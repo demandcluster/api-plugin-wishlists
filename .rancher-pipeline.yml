@@ -3,15 +3,17 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: npm install
+      shellScript: npm install -g npm-cli-login && npm-cli-login --quotes && npm install
     env:
       HOME: /home/jenkins
-      NPM_CONFIG_CACHE: /home/jenkins/.npm
-      NPM_EMAIL: rondlite@gmail.com
+      NPM_CONFIG_CACHE: /home/jenkins/.npm    
     envFrom:
     - sourceName: cicd
-      sourceKey: NPMJS_TOKEN
-      targetKey: NPM_TOKEN
+      sourceKey: NPMJS_USER
+      targetKey: NPM_USER
+    - sourceName: cicd
+      sourceKey: NPMJS_PASS
+      targetKey: NPM_PASS
 - name: Lint
   steps:
   - runScriptConfig:
