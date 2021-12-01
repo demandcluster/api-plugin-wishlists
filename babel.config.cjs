@@ -22,7 +22,8 @@ module.exports = function (api) { // eslint-disable-line no-undef
       "babel-plugin-transform-import-meta",
       "module:@reactioncommerce/babel-remove-es-create-require",
       "rewire-exports",
-      "transform-es2015-modules-commonjs"
+      "transform-es2015-modules-commonjs",
+      "@babel/plugin-proposal-class-static-block"
     ]
   };
 };
