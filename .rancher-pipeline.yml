@@ -34,19 +34,18 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: chown 1000:1000 /home/jenkins -R && npm set registry https://npm.demandcluster.com && npx semantic-release --no-ci
+      shellScript: chown 1000:1000 /home/jenkins -R && npx semantic-release --no-ci
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
-      NPM_EMAIL: devops@demandcluster.com
-      NPM_REGISTRY: https://npm.demandcluster.com
-      NPM_USERNAME: demandcluster
+      NPM_EMAIL: rondlite@gmail.com
+      NPM_USERNAME: rondlite
     envFrom:
     - sourceName: cicd
       sourceKey: DEVOPS_TOKEN
       targetKey: GH_TOKEN
     - sourceName: cicd
-      sourceKey: NPM_PASS
-      targetKey: NPM_PASSWORD
+      sourceKey: NPMJS_TOKEN
+      targetKey: NPM_TOKEN
 timeout: 60
 notification: {}
