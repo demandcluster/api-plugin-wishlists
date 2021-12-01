@@ -17,6 +17,9 @@ stages:
     - sourceName: cicd
       sourceKey: NPMJS_PASS
       targetKey: NPM_PASS
+    - sourceName: cicd
+      sourceKey: NPMJS_TOKEN
+      targetKey: NPM_TOKEN
 - name: Lint
   steps:
   - runScriptConfig:
