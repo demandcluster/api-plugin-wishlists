@@ -3,7 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: ls -all && npm install
+      shellScript: npm install
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
@@ -12,6 +12,9 @@ stages:
     - sourceName: cicd
       sourceKey: NPMJS_USER
       targetKey: NPM_USER
+    - sourceName: cicd
+      sourceKey: DEVOPS_TOKEN
+      targetKey: GH_TOKEN
     - sourceName: cicd
       sourceKey: NPM_EMAIL
       targetKey: NPM_EMAIL
