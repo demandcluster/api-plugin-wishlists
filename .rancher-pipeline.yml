@@ -3,16 +3,21 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: npm install -g npm-cli-login && npm-cli-login --quotes && npm set registry https://npm.demandcluster.com && npm install
+      shellScript: npm install -g npm-cli-login && npm-cli-login --quotes && npm install
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
       NPM_EMAIL: devops@demandcluster.com
-      NPM_REGISTRY: https://npm.demandcluster.com
-      NPM_USER: demandcluster
+      NPM_REGISTRY: https://registry.npmjs.org
     envFrom:
     - sourceName: cicd
-      sourceKey: NPM_PASS
+      sourceKey: NPM_EMAIL
+      targetKey: NPM_EMAIL
+    - sourceName: cicd
+      sourceKey: NPMJS_USER
+      targetKey: NPM_USERNAME
+    - sourceName: cicd
+      sourceKey: NPMJS_PASS
       targetKey: NPM_PASS
 - name: Lint
   steps:
@@ -34,19 +39,20 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: chown 1000:1000 /home/jenkins -R && npm set registry https://npm.demandcluster.com && npx semantic-release
+      shellScript: chown 1000:1000 /home/jenkins -R && npx semantic-release
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
-      NPM_EMAIL: devops@demandcluster.com
-      NPM_REGISTRY: https://npm.demandcluster.com
-      NPM_USERNAME: demandcluster
+      NPM_REGISTRY: https://registry.npmjs.org
     envFrom:
+    - sourceName: cicd
+      sourceKey: NPMJS_USER
+      targetKey: NPM_USERNAME
     - sourceName: cicd
       sourceKey: DEVOPS_TOKEN
       targetKey: GH_TOKEN
     - sourceName: cicd
-      sourceKey: NPM_PASS
+      sourceKey: NPMJS_PASS
       targetKey: NPM_PASSWORD
 timeout: 60
 notification: {}
