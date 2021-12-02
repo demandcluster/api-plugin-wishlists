@@ -1,7 +1,7 @@
 {
   "name": "@demandcluster/api-plugin-wishlists",
   "description": "Wishlists plugin for the Reaction API",
-  "version": "0.0.0-development",
+  "version": "1.0.1",
   "main": "index.js",
   "type": "module",
   "engines": {
