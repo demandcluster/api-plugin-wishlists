@@ -43,11 +43,16 @@
     "@reactioncommerce/babel-remove-es-create-require": "~1.0.0",
     "@reactioncommerce/data-factory": "^1.0.1",
     "@reactioncommerce/eslint-config": "~2.1.0",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/release-notes-generator": "^10.0.3",
     "babel-eslint": "^10.0.3",
     "babel-jest": "~25.1.0",
     "babel-plugin-rewire-exports": "^2.3.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-plugin-transform-import-meta": "~1.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^6.4.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jest": "^23.20.0",
@@ -63,6 +68,8 @@
   "scripts": {
     "lint": "npm run lint:eslint",
     "lint:eslint": "eslint .",
+    "prettier-format": "prettier 'src/**/*.js' --write",
+    "commit": "git-cz",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:file": "jest --no-cache --watch --coverage=false"
@@ -74,16 +81,12 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm run lint && npm run prettier-format",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "prettier": {
     "arrowParens": "always"
-  },
-  "release": {
-    "branches": [
-      "trunk"
-    ]
   },
   "publishConfig": {
     "access": "public"
