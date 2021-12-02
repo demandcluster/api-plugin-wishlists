@@ -39,20 +39,17 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: chown 1000:1000 /home/jenkins -R && npx semantic-release
+      shellScript: chown 1000:1000 /home/jenkins -R && npx semantic-release --no-ci
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
       NPM_REGISTRY: https://registry.npmjs.org
     envFrom:
     - sourceName: cicd
-      sourceKey: NPMJS_USER
-      targetKey: NPM_USER
+      sourceKey: NPMJS_TOKEN
+      targetKey: NPM_TOKEN
     - sourceName: cicd
       sourceKey: DEVOPS_TOKEN
       targetKey: GH_TOKEN
-    - sourceName: cicd
-      sourceKey: NPMJS_PASS
-      targetKey: NPM_PASSWORD
 timeout: 60
 notification: {}
