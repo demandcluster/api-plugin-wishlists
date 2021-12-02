@@ -15,7 +15,7 @@ stages:
       targetKey: NPM_EMAIL
     - sourceName: cicd
       sourceKey: NPMJS_USER
-      targetKey: NPM_USERNAME
+      targetKey: NPM_USER
     - sourceName: cicd
       sourceKey: NPMJS_PASS
       targetKey: NPM_PASS
@@ -47,7 +47,7 @@ stages:
     envFrom:
     - sourceName: cicd
       sourceKey: NPMJS_USER
-      targetKey: NPM_USERNAME
+      targetKey: NPM_USER
     - sourceName: cicd
       sourceKey: DEVOPS_TOKEN
       targetKey: GH_TOKEN
