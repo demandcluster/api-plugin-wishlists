@@ -6,8 +6,8 @@ stages:
       shellScript: rm .npmrc && echo //registry.npmjs.org/:_authToken=${NPM_TOKEN} >> /home/jenkins/.npmrc && npm install -g npm-cli-login && npm-cli-login --quotes && npm install
     env:
       HOME: /home/jenkins
-      NPM_RC_PATH: /home/jenkins/.npmrc
       NPM_CONFIG_CACHE: /home/jenkins/.npm
+      NPM_RC_PATH: /home/jenkins/.npmrc
     envFrom:
     - sourceName: cicd
       sourceKey: NPMJS_USER
@@ -18,9 +18,6 @@ stages:
     - sourceName: cicd
       sourceKey: NPMJS_PASS
       targetKey: NPM_PASS
-    - sourceName: cicd
-      sourceKey: NPMJS_TOKEN
-      targetKey: NPM_TOKEN
 - name: Lint
   steps:
   - runScriptConfig:
