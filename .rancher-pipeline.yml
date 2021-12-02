@@ -3,7 +3,7 @@ stages:
   steps:
   - runScriptConfig:
       image: node:latest
-      shellScript: npm install
+      shellScript: ls -all && npm install
     env:
       HOME: /home/jenkins
       NPM_CONFIG_CACHE: /home/jenkins/.npm
